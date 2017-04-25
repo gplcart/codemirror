@@ -35,27 +35,6 @@ class Codemirror extends Module
     }
 
     /**
-     * Module info
-     * @return array
-     */
-    public function info()
-    {
-        return array(
-            'name' => 'Code Mirror',
-            'version' => '1.0.0-dev',
-            'description' => 'Adds Code Mirror code editor library',
-            'author' => 'Iurii Makukh ',
-            'core' => '1.x',
-            'license' => 'GPL-3.0+',
-            'configure' => 'admin/module/settings/codemirror',
-            'settings' => array(
-                'mode' => array('htmlmixed'),
-                'theme' => 'dracula'
-            )
-        );
-    }
-
-    /**
      * Implements hook "library.list"
      * @param array $libraries
      */
