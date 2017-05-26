@@ -21,7 +21,7 @@
           <?php foreach ($columns as $mode) { ?>
           <div class="checkbox">
             <label>
-              <input name="settings[mode][]" value="<?php echo $this->escape($mode); ?>" type="checkbox"<?php echo in_array($mode, $settings['mode']) ? ' checked' : ''; ?>> <?php echo $this->escape($mode); ?>
+              <input name="settings[mode][]" value="<?php echo $this->e($mode); ?>" type="checkbox"<?php echo in_array($mode, $settings['mode']) ? ' checked' : ''; ?>> <?php echo $this->e($mode); ?>
             </label>
           </div>
           <?php } ?>
@@ -32,7 +32,7 @@
         <label><?php echo $this->text('Theme'); ?></label>
         <select name="settings[theme]" class="form-control">
           <?php foreach ($themes as $theme) { ?>
-          <option value="<?php echo $this->escape($theme); ?>"<?php echo $settings['theme'] == $theme ? ' selected' : ''; ?>><?php echo $this->escape($theme); ?></option>
+          <option value="<?php echo $this->e($theme); ?>"<?php echo $settings['theme'] == $theme ? ' selected' : ''; ?>><?php echo $this->e($theme); ?></option>
           <?php } ?>
         </select>
       </div>
