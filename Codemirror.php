@@ -9,8 +9,7 @@
 
 namespace gplcart\modules\codemirror;
 
-use gplcart\core\Module,
-    gplcart\core\Library;
+use gplcart\core\Module;
 
 /**
  * Main class for Code Mirror module
@@ -19,19 +18,11 @@ class Codemirror extends Module
 {
 
     /**
-     * Library class instance
-     * @var \gplcart\core\Library $library
+     * Constructor
      */
-    protected $library;
-
-    /**
-     * @param Library $library
-     */
-    public function __construct(Library $library)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->library = $library;
     }
 
     /**
@@ -100,7 +91,7 @@ class Codemirror extends Module
      */
     public function hookModuleEnableAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -108,7 +99,7 @@ class Codemirror extends Module
      */
     public function hookModuleDisableAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -116,7 +107,7 @@ class Codemirror extends Module
      */
     public function hookModuleInstallAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
     /**
@@ -124,7 +115,7 @@ class Codemirror extends Module
      */
     public function hookModuleUninstallAfter()
     {
-        $this->library->clearCache();
+        $this->getLibrary()->clearCache();
     }
 
 }
