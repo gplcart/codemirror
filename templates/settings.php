@@ -18,10 +18,11 @@
       </option>
       <?php } ?>
     </select>
+      <div class="help-block"><?php echo $this->text('Select a <a href="@url">skin</a> for Codemirror editor', array('@url' => 'https://codemirror.net/demo/theme.html')); ?></div>
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-md-2"><?php echo $this->text('Syntax'); ?></label>
+    <label class="control-label col-md-2"><?php echo $this->text('Language modes'); ?></label>
     <div class="col-md-10">
       <div class="row">
     <?php foreach ($modes as $columns) { ?>

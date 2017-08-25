@@ -8,7 +8,10 @@
     "configure": "admin/module/settings/codemirror",
     "settings": {
         "mode": [
-            "htmlmixed"
+            "htmlmixed",
+            "xml",
+            "javascript",
+            "css"
         ],
         "theme": "dracula"
     }
