@@ -85,7 +85,7 @@ class Settings extends BackendController
      */
     protected function setTitleEditSettings()
     {
-        $vars = array('%name' => $this->text('Code Mirror'));
+        $vars = array('%name' => $this->text('Codemirror'));
         $title = $this->text('Edit %name settings', $vars);
         $this->setTitle($title);
     }

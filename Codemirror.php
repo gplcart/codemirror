@@ -32,8 +32,8 @@ class Codemirror extends Module
     public function hookLibraryList(array &$libraries)
     {
         $libraries['codemirror'] = array(
-            'name' => 'CodeMirror',
-            'description' => 'In-browser code editor',
+            'name' => /* @text */'Codemirror',
+            'description' => /* @text */'In-browser code editor',
             'type' => 'asset',
             'module' => 'codemirror',
             'url' => 'https://codemirror.net',

@@ -1,7 +1,7 @@
 {
-    "name": "Code Mirror",
+    "name": "Codemirror",
     "version": "1.0.0-dev",
-    "description": "Adds Code Mirror code editor library",
+    "description": "Adds Codemirror code editor library",
     "author": "Iurii Makukh ",
     "core": "1.x",
     "license": "GPL-3.0+",
