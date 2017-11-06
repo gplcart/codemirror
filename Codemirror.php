@@ -9,7 +9,8 @@
 
 namespace gplcart\modules\codemirror;
 
-use gplcart\core\Module;
+use gplcart\core\Module,
+    gplcart\core\Config;
 
 /**
  * Main class for Code Mirror module
@@ -18,11 +19,11 @@ class Codemirror extends Module
 {
 
     /**
-     * Constructor
+     * @param Config $config
      */
-    public function __construct()
+    public function __construct(Config $config)
     {
-        parent::__construct();
+        parent::__construct($config);
     }
 
     /**
@@ -72,7 +73,7 @@ class Codemirror extends Module
             throw new \InvalidArgumentException('Argument must be instance of gplcart\core\Controller');
         }
 
-        $settings = $this->config->module('codemirror');
+        $settings = $this->config->getFromModule('codemirror');
         $object->setJsSettings('codemirror', $settings);
 
         $options = array('aggregate' => false);

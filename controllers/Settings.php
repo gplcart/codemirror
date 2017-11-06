@@ -44,7 +44,7 @@ class Settings extends BackendController
 
         $this->setData('modes', $this->getLibraryModesSettings());
         $this->setData('themes', $this->getLibraryThemesSettings());
-        $this->setData('settings', $this->config->module('codemirror'));
+        $this->setData('settings', $this->config->getFromModule('codemirror'));
 
         $this->submitSettings();
         $this->outputEditSettings();
