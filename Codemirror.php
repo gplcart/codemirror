@@ -26,6 +26,8 @@ class Codemirror extends Module
         parent::__construct($config);
     }
 
+    /* ----------------------- Hooks ----------------------- */
+
     /**
      * Implements hook "library.list"
      * @param array $libraries
@@ -64,30 +66,6 @@ class Codemirror extends Module
     }
 
     /**
-     * Add codemirror library and context files depending on the module settings
-     * @param \gplcart\core\Controller $object
-     */
-    public function addLibrary($object)
-    {
-        if (!$object instanceof \gplcart\core\Controller) {
-            throw new \InvalidArgumentException('Argument must be instance of gplcart\core\Controller');
-        }
-
-        $settings = $this->config->getFromModule('codemirror');
-        $object->setJsSettings('codemirror', $settings);
-
-        $options = array('aggregate' => false);
-        $base = 'system/modules/codemirror/vendor/codemirror/CodeMirror';
-
-        $object->addAssetLibrary('codemirror', $options);
-        $object->setCss("$base/theme/{$settings['theme']}.css", $options);
-
-        foreach ($settings['mode'] as $mode) {
-            $object->setJs("$base/mode/$mode/$mode.js", $options);
-        }
-    }
-
-    /**
      * Implements hook "module.enable.after"
      */
     public function hookModuleEnableAfter()
@@ -117,6 +95,28 @@ class Codemirror extends Module
     public function hookModuleUninstallAfter()
     {
         $this->getLibrary()->clearCache();
+    }
+
+    /* ----------------------- API ----------------------- */
+
+    /**
+     * Add CodeMirror library and extra files
+     * @param \gplcart\core\Controller $object
+     */
+    public function addLibrary($object)
+    {
+        $settings = $this->config->getFromModule('codemirror');
+        $object->setJsSettings('codemirror', $settings);
+
+        $options = array('aggregate' => false);
+        $base = 'system/modules/codemirror/vendor/codemirror/CodeMirror';
+
+        $object->addAssetLibrary('codemirror', $options);
+        $object->setCss("$base/theme/{$settings['theme']}.css", $options);
+
+        foreach ($settings['mode'] as $mode) {
+            $object->setJs("$base/mode/$mode/$mode.js", $options);
+        }
     }
 
 }
