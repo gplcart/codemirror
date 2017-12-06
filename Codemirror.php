@@ -9,24 +9,36 @@
 
 namespace gplcart\modules\codemirror;
 
-use gplcart\core\Module,
-    gplcart\core\Config;
+use gplcart\core\Library,
+    gplcart\core\Module;
 
 /**
  * Main class for Code Mirror module
  */
-class Codemirror extends Module
+class Codemirror
 {
 
     /**
-     * @param Config $config
+     * Module class instance
+     * @var \gplcart\core\Module $module
      */
-    public function __construct(Config $config)
-    {
-        parent::__construct($config);
-    }
+    protected $module;
 
-    /* ----------------------- Hooks ----------------------- */
+    /**
+     * Library class instance
+     * @var \gplcart\core\Library $library
+     */
+    protected $library;
+
+    /**
+     * @param Module $module
+     * @param Library $library
+     */
+    public function __construct(Module $module, Library $library)
+    {
+        $this->module = $module;
+        $this->library = $library;
+    }
 
     /**
      * Implements hook "library.list"
@@ -70,7 +82,7 @@ class Codemirror extends Module
      */
     public function hookModuleEnableAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -78,7 +90,7 @@ class Codemirror extends Module
      */
     public function hookModuleDisableAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -86,7 +98,7 @@ class Codemirror extends Module
      */
     public function hookModuleInstallAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
 
     /**
@@ -94,28 +106,23 @@ class Codemirror extends Module
      */
     public function hookModuleUninstallAfter()
     {
-        $this->getLibrary()->clearCache();
+        $this->library->clearCache();
     }
-
-    /* ----------------------- API ----------------------- */
 
     /**
      * Add CodeMirror library and extra files
-     * @param \gplcart\core\Controller $object
+     * @param \gplcart\core\Controller $controller
      */
-    public function addLibrary($object)
+    public function addLibrary($controller)
     {
-        $settings = $this->config->getFromModule('codemirror');
-        $object->setJsSettings('codemirror', $settings);
+        $settings = $this->module->getSettings('codemirror');
+        $controller->setJsSettings('codemirror', $settings);
 
-        $options = array('aggregate' => false);
-        $base = 'system/modules/codemirror/vendor/codemirror/CodeMirror';
-
-        $object->addAssetLibrary('codemirror', $options);
-        $object->setCss("$base/theme/{$settings['theme']}.css", $options);
+        $controller->addAssetLibrary('codemirror');
+        $controller->setCss("system/modules/codemirror/vendor/codemirror/CodeMirror/theme/{$settings['theme']}.css");
 
         foreach ($settings['mode'] as $mode) {
-            $object->setJs("$base/mode/$mode/$mode.js", $options);
+            $controller->setJs("system/modules/codemirror/vendor/codemirror/CodeMirror/mode/$mode/$mode.js");
         }
     }
 

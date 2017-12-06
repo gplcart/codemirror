@@ -9,7 +9,6 @@
 
 namespace gplcart\modules\codemirror\controllers;
 
-use gplcart\core\models\Module as ModuleModel;
 use gplcart\core\controllers\backend\Controller as BackendController;
 
 /**
@@ -19,19 +18,11 @@ class Settings extends BackendController
 {
 
     /**
-     * Module model instance
-     * @var \gplcart\core\models\Module $module
+     * Constructor
      */
-    protected $module;
-
-    /**
-     * @param ModuleModel $module
-     */
-    public function __construct(ModuleModel $module)
+    public function __construct()
     {
         parent::__construct();
-
-        $this->module = $module;
     }
 
     /**
@@ -44,7 +35,7 @@ class Settings extends BackendController
 
         $this->setData('modes', $this->getLibraryModesSettings());
         $this->setData('themes', $this->getLibraryThemesSettings());
-        $this->setData('settings', $this->config->getFromModule('codemirror'));
+        $this->setData('settings', $this->module->getSettings('codemirror'));
 
         $this->submitSettings();
         $this->outputEditSettings();
@@ -62,6 +53,7 @@ class Settings extends BackendController
         foreach (glob($pattern, GLOB_ONLYDIR) as $directory) {
             $modes[] = basename($directory, '');
         }
+
         return gplcart_array_split($modes, 6);
     }
 
@@ -126,7 +118,7 @@ class Settings extends BackendController
     protected function validateSettings()
     {
         $this->setSubmitted('settings');
-        
+
         return !$this->hasErrors();
     }
 
