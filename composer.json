@@ -1,12 +1,19 @@
 {
-    "name": "gplcart/codemirror",
-    "type": "gplcart-module",
-    "description": "",
-    "keywords": ["gplcart", "ecommerce", "shopping cart", "gplcart module", "php", "code mirror"],
-    "license": "GPL-3.0+",
-    "require": {
-        "gplcart/composer-module-installer": "*"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "gplcart/codemirror",
+  "type": "gplcart-module",
+  "description": "",
+  "keywords": [
+    "gplcart",
+    "ecommerce",
+    "shopping cart",
+    "gplcart module",
+    "php",
+    "code mirror"
+  ],
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "gplcart/composer-module-installer": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
