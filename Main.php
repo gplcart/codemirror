@@ -9,8 +9,8 @@
 
 namespace gplcart\modules\codemirror;
 
-use gplcart\core\Module,
-    gplcart\core\Library;
+use gplcart\core\Library;
+use gplcart\core\Module;
 
 /**
  * Main class for Code Mirror module
@@ -47,8 +47,8 @@ class Main
     public function hookLibraryList(array &$libraries)
     {
         $libraries['codemirror'] = array(
-            'name' => /* @text */'Codemirror',
-            'description' => /* @text */'In-browser code editor',
+            'name' => 'Codemirror', // @text
+            'description' => 'In-browser code editor', // @text
             'type' => 'asset',
             'module' => 'codemirror',
             'url' => 'https://codemirror.net',
