@@ -9,21 +9,13 @@
 
 namespace gplcart\modules\codemirror\controllers;
 
-use gplcart\core\controllers\backend\Controller as BackendController;
+use gplcart\core\controllers\backend\Controller;
 
 /**
  * Handles incoming requests and outputs data related Code Mirror module settings
  */
-class Settings extends BackendController
+class Settings extends Controller
 {
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Route page callback to display the module settings page
@@ -66,9 +58,11 @@ class Settings extends BackendController
         $pattern = __DIR__ . '/../vendor/codemirror/CodeMirror/theme/*.css';
 
         $themes = array();
+
         foreach (glob($pattern) as $file) {
             $themes[] = pathinfo($file, PATHINFO_FILENAME);
         }
+
         return $themes;
     }
 
@@ -77,8 +71,7 @@ class Settings extends BackendController
      */
     protected function setTitleEditSettings()
     {
-        $vars = array('%name' => $this->text('Codemirror'));
-        $title = $this->text('Edit %name settings', $vars);
+        $title = $this->text('Edit %name settings', array('%name' => $this->text('Codemirror')));
         $this->setTitle($title);
     }
 

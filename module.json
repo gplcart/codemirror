@@ -1,18 +1,18 @@
 {
-    "name": "Codemirror",
-    "version": "1.0.0-dev",
-    "description": "Adds Codemirror code editor library",
-    "author": "Iurii Makukh ",
-    "core": "1.x",
-    "license": "GPL-3.0+",
-    "configure": "admin/module/settings/codemirror",
-    "settings": {
-        "mode": [
-            "htmlmixed",
-            "xml",
-            "javascript",
-            "css"
-        ],
-        "theme": "dracula"
-    }
+  "name": "Codemirror",
+  "version": "1.0.0-dev",
+  "description": "Adds Codemirror code editor library",
+  "author": "Iurii Makukh ",
+  "core": "1.x",
+  "license": "GPL-3.0+",
+  "configure": "admin/module/settings/codemirror",
+  "settings": {
+    "mode": [
+      "htmlmixed",
+      "xml",
+      "javascript",
+      "css"
+    ],
+    "theme": "dracula"
+  }
 }

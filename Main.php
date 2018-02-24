@@ -9,8 +9,10 @@
 
 namespace gplcart\modules\codemirror;
 
+use gplcart\core\Controller;
 use gplcart\core\Library;
 use gplcart\core\Module;
+use InvalidArgumentException;
 
 /**
  * Main class for Code Mirror module
@@ -112,9 +114,14 @@ class Main
     /**
      * Add CodeMirror library and extra files
      * @param \gplcart\core\Controller $controller
+     * @throws InvalidArgumentException
      */
     public function addLibrary($controller)
     {
+        if (!$controller instanceof Controller) {
+            throw new InvalidArgumentException('Argument must be instance of \gplcart\core\Controller');
+        }
+
         $settings = $this->module->getSettings('codemirror');
         $controller->setJsSettings('codemirror', $settings);
 
