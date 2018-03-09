@@ -12,8 +12,21 @@
   ],
   "license": "GPL-3.0-or-later",
   "require": {
-    "gplcart/composer-module-installer": "*"
+    "gplcart/composer-module-installer": "^1",
+    "assets/codemirror": "5.19.0"
   },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  "repositories": [
+    {
+      "type": "package",
+      "packagist.org": false,
+      "package": {
+        "name": "assets/codemirror",
+        "version": "5.19.0",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/codemirror/CodeMirror/archive/5.19.0.zip"
+        }
+      }
+    }
+  ]
 }
