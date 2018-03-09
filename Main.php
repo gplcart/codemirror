@@ -13,6 +13,7 @@ use gplcart\core\Controller;
 use gplcart\core\Library;
 use gplcart\core\Module;
 use InvalidArgumentException;
+use OutOfRangeException;
 
 /**
  * Main class for Code Mirror module
@@ -54,13 +55,11 @@ class Main
             'type' => 'asset',
             'module' => 'codemirror',
             'url' => 'https://codemirror.net',
-            'download' => 'http://codemirror.net/codemirror.zip',
-            'version_source' => array(
-                'file' => 'vendor/codemirror/CodeMirror/package.json'
-            ),
+            'download' => 'https://github.com/codemirror/CodeMirror/archive/5.19.0.zip',
+            'version' => '5.19.0',
             'files' => array(
-                'vendor/codemirror/CodeMirror/lib/codemirror.js',
-                'vendor/codemirror/CodeMirror/lib/codemirror.css',
+                'lib/codemirror.js',
+                'lib/codemirror.css',
             ),
         );
     }
@@ -115,6 +114,7 @@ class Main
      * Add CodeMirror library and extra files
      * @param \gplcart\core\Controller $controller
      * @throws InvalidArgumentException
+     * @throws OutOfRangeException
      */
     public function addLibrary($controller)
     {
@@ -124,12 +124,18 @@ class Main
 
         $settings = $this->module->getSettings('codemirror');
         $controller->setJsSettings('codemirror', $settings);
-
         $controller->addAssetLibrary('codemirror');
-        $controller->setCss("system/modules/codemirror/vendor/codemirror/CodeMirror/theme/{$settings['theme']}.css");
+
+        $library = $this->library->get('codemirror');
+
+        if (!isset($library['basepath'])) {
+            throw new OutOfRangeException('"basepath" key is not set in Codemirror library data');
+        }
+
+        $controller->setCss("{$library['basepath']}/theme/{$settings['theme']}.css");
 
         foreach ($settings['mode'] as $mode) {
-            $controller->setJs("system/modules/codemirror/vendor/codemirror/CodeMirror/mode/$mode/$mode.js");
+            $controller->setJs("{$library['basepath']}/mode/$mode/$mode.js");
         }
     }
 
